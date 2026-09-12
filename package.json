@@ -1,0 +1,20 @@
+{
+  "name": "tjm-2025-2026-portfolio",
+  "version": "1.0.0",
+  "description": "Tian Jiangming selected AI and interactive works",
+  "main": "script.js",
+  "scripts": {
+    "build": "esbuild morph-ui.js --bundle --minify --format=iife --outfile=assets/morph-ui.bundle.js",
+    "preview": "python3 -m http.server 8000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "esbuild": "^0.28.2",
+    "lucide": "^1.45.0",
+    "morphicons": "^1.7.1"
+  },
+  "private": true
+}
