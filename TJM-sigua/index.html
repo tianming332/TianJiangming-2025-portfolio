@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#E2DFDA">
+<title>Melon Jelly — TJM Material Lab</title>
+<link rel="stylesheet" href="tjm/css/custom.css">
+<link rel="stylesheet" href="tjm/css/portfolio-motion.css">
+<style>
+:root{--paper:#E2DFDA;--ink:#211e1b;--muted:#69635d;--accent:#b72d3d;--accent-soft:#e49aa2;--rule:rgba(33,30,27,.28);--glass:rgba(226,223,218,.76)}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}body{overflow:hidden}.app{height:100svh;position:relative;background:var(--paper);isolation:isolate}.stage{position:absolute;inset:0}.stage canvas{display:block;width:100%;height:100%;touch-action:none}.mast{position:absolute;z-index:3;top:clamp(22px,4vh,48px);left:clamp(22px,4vw,62px);width:min(410px,36vw);pointer-events:none}.eyebrow{font:700 10px/1 Arial,sans-serif;letter-spacing:.18em}.mast h1{font:italic 400 clamp(62px,9vw,144px)/.72 Georgia,serif;letter-spacing:-.075em;margin:22px 0 26px}.mast h1 span{display:block;margin-left:.37em}.tagline{font:400 15px/1.35 Georgia,serif;max-width:260px}.status{position:absolute;z-index:5;right:clamp(22px,3vw,42px);top:clamp(20px,3vh,36px);height:31px;padding:0 13px;border:1px solid var(--ink);border-radius:99px;background:var(--glass);backdrop-filter:blur(12px);display:flex;align-items:center;gap:8px;font:700 9px/1 Arial,sans-serif;letter-spacing:.13em}.status i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}.status.paused i,.status.unavailable i{background:#777;box-shadow:none}.panel{position:absolute;z-index:4;right:clamp(22px,3vw,42px);top:clamp(68px,9vh,88px);width:292px;border:1px solid var(--ink);background:var(--glass);backdrop-filter:blur(16px);padding:15px}.panel-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--rule);font:700 9px/1 Arial,sans-serif;letter-spacing:.15em}.panel-head span:last-child{font-weight:400;color:var(--muted)}.group{padding:13px 0;border-bottom:1px solid var(--rule)}.label{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font:700 9px/1 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}button{font:700 9px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:inherit;background:transparent;border:1px solid var(--ink);min-height:36px;cursor:pointer}.seg button{border:0;display:flex;align-items:center;justify-content:center;gap:8px}.seg button+button{border-left:1px solid var(--ink)}button.active,.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}button:hover:not(:disabled){background:var(--accent);color:white}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button:disabled,input:disabled{opacity:.35;cursor:not-allowed}.ico{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.4}.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.swatch{min-height:52px;padding:0 5px;border-color:var(--rule);display:grid;place-items:center;gap:3px}.swatch:before{content:"";width:17px;height:17px;border-radius:50%;background:var(--c);border:4px solid var(--r);box-shadow:0 0 0 1px rgba(0,0,0,.25)}.swatch.active{border-color:var(--ink);background:transparent;color:var(--ink);box-shadow:inset 0 -3px var(--c)}.range-labels{display:flex;justify-content:space-between;color:var(--muted);font:italic 11px Georgia,serif;margin-top:3px}input[type=range]{width:100%;height:16px;margin:0;appearance:none;background:transparent}input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--ink)}input[type=range]::-webkit-slider-thumb{appearance:none;width:13px;height:13px;border-radius:50%;background:var(--paper);border:1px solid var(--ink);margin-top:-6px}input[type=range]::-moz-range-track{height:1px;background:var(--ink)}input[type=range]::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--paper);border:1px solid var(--ink)}.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:13px}.actions button:first-child{grid-column:1/-1;background:var(--accent);border-color:var(--accent);color:white}.checks{display:flex;justify-content:space-between;padding-top:12px;font:700 9px/1 Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}.checks label{display:flex;gap:7px;align-items:center;cursor:pointer}.checks input{appearance:none;width:13px;height:13px;border:1px solid var(--ink);margin:0}.checks input:checked{background:var(--accent);box-shadow:inset 0 0 0 3px var(--paper)}.readout{position:absolute;z-index:3;left:clamp(22px,4vw,62px);bottom:clamp(22px,4vh,46px);width:min(670px,calc(100vw - 390px));pointer-events:none}.hint{font:italic 16px/1.3 Georgia,serif;margin-bottom:15px}.data{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);padding-top:10px;gap:15px}.datum label{display:block;font:700 8px/1 Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;margin-bottom:5px}.datum strong{font:400 19px/1 Georgia,serif}.foot{font:8px/1.3 Arial,sans-serif;letter-spacing:.07em;color:var(--muted);margin-top:10px}.inside{position:absolute;z-index:5;right:clamp(22px,3vw,42px);bottom:clamp(22px,3vh,38px);width:292px;border-top:1px solid var(--ink);background:var(--glass);backdrop-filter:blur(12px)}.inside summary{cursor:pointer;list-style:none;padding:12px 2px;display:flex;justify-content:space-between;font:700 9px/1 Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}.inside summary:after{content:"+";font-size:14px}.inside[open] summary:after{content:"−"}.notes{border-top:1px solid var(--rule);padding:12px 2px 4px;font:12px/1.45 Georgia,serif}.notes p{margin:0 0 9px}.notes b{font-family:Arial,sans-serif;font-size:8px;letter-spacing:.11em;text-transform:uppercase}.guide{position:absolute;inset:0;z-index:7;pointer-events:none;width:100%;height:100%}.guide line{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:7 6;display:none}.guide circle{fill:var(--paper);stroke:var(--accent);display:none}.toast{position:absolute;z-index:9;left:50%;bottom:48px;translate:-50% 14px;opacity:0;border:1px solid var(--ink);background:rgba(226,223,218,.94);padding:11px 15px;font:italic 13px Georgia,serif;transition:.25s;pointer-events:none;white-space:nowrap}.toast.show{opacity:1;translate:-50% 0}.fallback{display:none;position:absolute;inset:0;z-index:20;place-items:center;background:var(--paper);padding:30px}.fallback.show{display:grid}.fallback article{max-width:620px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 0 28px}.fallback h2{font:italic 400 clamp(40px,7vw,80px)/.95 Georgia,serif;letter-spacing:-.05em;margin:45px 0 22px}.fallback p{font:15px/1.55 Georgia,serif;max-width:500px}.error{display:none;position:fixed;z-index:30;left:20px;right:20px;bottom:20px;max-height:45vh;overflow:auto;background:#211e1b;color:#fff1e4;padding:16px;white-space:pre-wrap;font:11px/1.5 ui-monospace,monospace}.error.show{display:block}
+@media(max-width:860px){body{overflow:auto}.app{height:auto;min-height:100svh;display:grid;grid-template-areas:'mast' 'stage' 'read' 'panel' 'inside';grid-template-rows:auto 58vh auto auto auto;padding:18px;gap:18px}.stage{position:relative;inset:auto;grid-area:stage;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:0 -18px}.mast{grid-area:mast;position:relative;inset:auto;width:auto}.mast h1{font-size:20vw;margin:20px 0}.tagline{font-size:14px}.status{position:fixed;top:14px;right:14px}.panel{grid-area:panel;position:relative;inset:auto;width:auto;padding:16px}.readout{grid-area:read;position:relative;inset:auto;width:auto}.inside{grid-area:inside;position:relative;inset:auto;width:auto}.toast{position:fixed;bottom:20px}.seg button,button{min-height:44px}.swatch{min-height:58px}.checks label{min-height:44px}.data{grid-template-columns:repeat(2,1fr);row-gap:16px}.foot{font-size:9px}.guide{position:fixed}.fallback{position:fixed}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.toast{transition:none}.mast h1{animation:none!important}}
+/* Quiet editorial surface; mobile controls never overlap the specimen. */
+:root{--ink:#292b25;--muted:#78796f;--rule:#bcbcb0}.panel{width:244px;background:rgba(226,223,218,.92);backdrop-filter:none}.status{border-color:var(--rule);backdrop-filter:none}.mast h1{font-size:clamp(70px,8vw,124px)}.mast{width:290px}.tagline{color:#64675b;line-height:1.55}.panel,.group,.panel-head,button{border-color:var(--rule)}.data{grid-template-columns:repeat(3,1fr)}.readout{width:440px}.inside{width:244px}.foot{line-height:1.6}.app{min-height:700px}.stage canvas:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}.status i{box-shadow:none}button{border-radius:0}
+@media(max-width:1100px){body{overflow:auto}.app{height:auto;min-height:100svh;display:grid;grid-template-areas:'mast' 'stage' 'read' 'panel' 'inside';grid-template-rows:auto 52svh auto auto auto;padding:24px;gap:24px;overflow:visible}.stage{position:relative;inset:auto;grid-area:stage;min-height:340px;margin:0 -24px;border-bottom:1px solid var(--rule)}.mast{grid-area:mast;position:relative;inset:auto;width:auto}.mast h1{font-size:82px;margin:24px 0}.tagline{font-size:13px}.status{position:absolute;top:18px;right:18px;font-size:8px}.panel{grid-area:panel;position:relative;inset:auto;width:auto}.readout{grid-area:read;position:relative;inset:auto;width:auto}.inside{grid-area:inside;position:relative;inset:auto;width:auto}.seg button,button{min-height:44px}.swatch{min-height:58px}.checks label{min-height:44px}.data{grid-template-columns:repeat(3,1fr)}}
+
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* TJM tool-page adapter — canonical tokens and settings remain owned by tjm/css/custom.css. */
+:root{--accent:#3157ff;--accent-soft:#8ea3ff;--glass:color-mix(in srgb,var(--surface) 70%,transparent);--rule:color-mix(in srgb,var(--ink) 22%,transparent)}
+html,body{background:var(--surface);font-family:"Noto Sans TC","Noto Sans SC","Microsoft JhengHei","Microsoft YaHei",Arial,sans-serif}.app{background:var(--surface);color:var(--ink);transition:color .28s ease,background .28s ease}.page-holder{margin:0;min-height:100svh;background:var(--surface)}
+.tjm-shell-shim,.sidebar-expand,.sidebar-collapse{display:none!important}.tjm-topbar{position:absolute;z-index:8;top:0;left:0;right:0;height:58px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 30px;border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--surface) 84%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.16);backdrop-filter:blur(18px) saturate(1.16)}.tjm-brand{display:flex;align-items:center;gap:13px;color:inherit;text-decoration:none;font-size:10px;letter-spacing:.16em;transition:opacity .2s ease,transform .25s cubic-bezier(.16,1,.3,1)}.tjm-brand:hover{opacity:.62;transform:translateX(3px)}.tjm-brand b{font-size:18px;letter-spacing:-.08em}.tjm-topbar-center{font-size:9px;letter-spacing:.18em;color:var(--muted)}.tjm-topbar-meta{justify-self:end;padding-right:0;margin-right:440px;font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.settings-dock{z-index:40}.app .status{top:78px;right:30px;border:1px solid var(--rule);border-radius:999px;background:color-mix(in srgb,var(--surface) 72%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.mast{top:112px;left:32px;width:300px}.eyebrow{color:#3157ff;font-size:9px;letter-spacing:.22em}.mast h1{margin:18px 0 22px;font-family:"Noto Sans TC","Noto Sans SC","Microsoft YaHei",Arial,sans-serif;font-style:normal;font-weight:300;font-size:clamp(52px,6.5vw,104px);line-height:.82;letter-spacing:-.075em}.mast h1 span{margin-left:.18em;color:#3157ff}.tagline{font-family:inherit;font-size:11px;line-height:1.7;letter-spacing:.02em;color:var(--muted)}
+.panel{top:112px;right:30px;width:280px;padding:18px;border:1px solid var(--rule);border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--surface) 78%,transparent),color-mix(in srgb,#3157ff 7%,transparent));-webkit-backdrop-filter:blur(22px) saturate(1.16);backdrop-filter:blur(22px) saturate(1.16);box-shadow:inset 0 1px rgba(255,255,255,.38),0 18px 55px rgba(24,31,55,.10)}.panel-head{padding-bottom:15px}.group{padding:16px 0}.label,.panel-head{font-size:8px;letter-spacing:.18em}.swatches{gap:8px}.swatch{border-radius:12px;min-height:58px}.swatch.active{border-color:#3157ff;box-shadow:inset 0 -3px #3157ff}.actions{gap:8px;padding-top:16px}.actions button:first-child{background:#3157ff;border-color:#3157ff}.panel button{border-radius:999px;transition:transform .24s cubic-bezier(.16,1,.3,1),background .2s,color .2s,border-color .2s}.panel button:hover:not(:disabled){background:#3157ff;border-color:#3157ff;transform:translateY(-2px)}.checks input:checked{background:#3157ff}.range-labels,.hint,.notes{font-family:inherit;font-style:normal}
+.readout{left:32px;bottom:30px;width:500px}.hint{font-size:12px;line-height:1.65;color:var(--muted)}.data{border-top-color:var(--rule);gap:0}.datum{padding:3px 18px 2px 0;border-right:1px solid var(--rule)}.datum+.datum{padding-left:18px}.datum:last-child{border-right:0}.datum strong{font-family:inherit;font-size:22px;font-weight:300}.foot{margin-top:13px;letter-spacing:.10em}.inside{right:30px;bottom:28px;width:280px;border:1px solid var(--rule);border-radius:14px;padding:0 14px;background:color-mix(in srgb,var(--surface) 76%,transparent);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}.inside summary{padding:14px 0}.notes{font-size:11px;color:var(--muted)}
+body[data-theme="black"] .panel,body[data-theme="gray"] .panel{box-shadow:inset 0 1px rgba(255,255,255,.10),0 20px 58px rgba(0,0,0,.20)}body[data-theme="black"] .mast h1 span{color:#8ea3ff}body[data-theme="black"] .eyebrow{color:#8ea3ff}.toast{font-family:inherit;font-style:normal;border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent)}
+.model-library{position:relative}.model-select-wrap{position:relative;display:grid;grid-template-columns:30px 1fr 22px;align-items:center;min-height:52px;border:1px solid var(--rule);border-radius:14px;background:color-mix(in srgb,var(--surface) 72%,transparent);overflow:hidden;transition:border-color .2s,box-shadow .2s}.model-select-wrap:focus-within{border-color:#3157ff;box-shadow:0 0 0 3px color-mix(in srgb,#3157ff 15%,transparent)}.model-orb{width:17px;height:17px;margin-left:11px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#ffb5bd 0 18%,#c92e46 48%,#264f2c 51% 72%,#f2f0e7 75%);box-shadow:0 2px 8px rgba(49,87,255,.18)}.model-orb.pig-jelly{border-radius:45% 45% 48% 48%;background:radial-gradient(circle at 35% 25%,#fff 0 8%,#ffb4ca 28%,rgba(255,112,157,.72) 66%,rgba(255,116,166,.32));box-shadow:inset -3px -5px 8px rgba(174,42,95,.18),0 2px 10px rgba(255,96,150,.25)}.model-orb.pig-plush{border-radius:45%;background:radial-gradient(circle at 35% 30%,#fff6f1,#f2b8b6 70%);box-shadow:inset 0 0 0 1px #c99090,0 2px 8px rgba(90,60,60,.15)}#modelSelect{appearance:none;width:100%;height:50px;border:0;outline:0;background:transparent;color:var(--ink);font:700 11px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:0 5px;cursor:pointer}#modelSelect option,#modelSelect optgroup{color:#151515;background:#f6f6f1}.model-chevron{font-size:18px;color:var(--muted);pointer-events:none;translate:0 -2px}.model-caption{display:flex;justify-content:space-between;gap:12px;padding:9px 3px 0;font-size:8px;letter-spacing:.11em}.model-caption span{color:var(--muted);text-align:right}.model-library .label{margin-bottom:10px}body[data-theme="black"] .model-select-wrap{background:rgba(255,255,255,.035)}
+@media(max-width:1450px){.tjm-topbar-meta{display:none}.tjm-topbar{grid-template-columns:1fr auto 1fr}.tjm-topbar-center{grid-column:2}}
+@media(max-width:1100px){.tjm-topbar{position:relative;height:56px;padding:0 18px;grid-template-columns:1fr auto}.tjm-topbar-center{display:none}.tjm-topbar-meta{padding-right:0}.app{padding-top:0}.mast{top:auto;left:auto}.app .status{top:68px;right:14px}.panel{top:auto;right:auto}.readout{left:auto;bottom:auto}.inside{right:auto;bottom:auto}.settings-dock{top:66px}.mast h1{font-size:clamp(58px,16vw,88px);line-height:.86}.mast h1 span{display:inline;margin-left:.08em}.tagline{max-width:230px}.stage{border-top:1px solid var(--rule)}.panel,.inside{border-radius:16px}.readout{width:auto}.data{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.tjm-topbar{height:52px;padding:0 14px}.tjm-brand span,.tjm-topbar-meta{display:none}.mast{padding-top:104px}.mast h1{font-size:15vw}.app .status{top:60px}.settings-dock{top:58px}.settings-content{max-width:calc(100vw - 54px)}.language-options button,.theme-options button{min-height:32px;padding:5px 7px}.panel{padding:15px}.data{grid-template-columns:1fr 1fr}.datum:nth-child(2){border-right:0}.datum:last-child{padding-left:0;padding-top:14px}.hint{padding-right:8px}}
+
+/* Keep the new selector in the full-width control column on phones. */
+@media(max-width:1100px){
+ .app{grid-template-areas:'brand' 'mast' 'stage' 'read' 'panel' 'inside';grid-template-rows:auto auto 52svh auto auto auto}
+ .tjm-topbar{grid-area:brand;margin:0 -24px;grid-template-columns:1fr auto}
+ .mast{padding-top:48px}.panel,.inside{width:auto}
+ .app .status{z-index:9;top:12px;right:18px}
+}
+@media(prefers-reduced-motion:reduce){.model-select-wrap{transition:none}}
+</style>
+</head>
+<body data-theme="white" data-title-hans="冻西瓜｜TJM 材质实验" data-title-ja="メロンゼリー｜TJM マテリアル実験" data-title-en="Melon Jelly | TJM Material Lab"><aside class="sidebar tjm-shell-shim" aria-hidden="true"><div class="sidebar-inner"></div></aside><main class="page-holder"><div class="app">
+<header class="tjm-topbar"><a class="tjm-brand" href="https://tianming332.github.io/JiangmingTian_Portfolio_Final/" data-preserve-preferences aria-label="返回 TJM 作品集"><b>TJM</b><span>MATERIAL LAB</span></a><div class="tjm-topbar-center">INTERACTION · WEBGPU · SOFT BODY</div><div class="tjm-topbar-meta">EXPERIMENT 009 / 2026</div></header>
+<div class="stage" id="stage"><canvas id="gpu" tabindex="0" aria-label="Interactive 3D watermelon jelly. Drag to stretch, drag background to orbit. Arrow keys nudge, R resets, Space pauses."></canvas></div>
+<header class="mast"><div class="eyebrow">MATERIAL STUDIES / NO. 009</div><h1>Melon <span>Jelly.</span></h1><div class="tagline">A slice of summer.<br>A little wobble.<br>Too soft to share.</div></header>
+<div class="status" id="status" role="status"><i></i><span>WEBGPU · STARTING</span></div>
+<aside class="panel" aria-label="Experiment controls">
+<div class="panel-head"><span>THE SPECIMEN</span><span>009—JEL</span></div>
+<section class="group model-library" data-i18n><div class="label"><label for="modelSelect">模型库 / MODEL LIBRARY</label><span id="modelCount">05</span></div><div class="model-select-wrap"><span class="model-orb" id="modelOrb" aria-hidden="true"></span><select id="modelSelect" aria-label="选择模型"><optgroup label="冻西瓜 / JELLY MELON"><option value="0">01 · Crimson 红瓤冻西瓜</option><option value="1">02 · Golden 金瓤冻西瓜</option><option value="2">03 · Rosé 粉瓤冻西瓜</option></optgroup><optgroup label="小猪伙伴 / PIG FRIENDS"><option value="3">04 · Jelly Pig 果冻小猪</option><option value="4">05 · Plush Pig 毛绒小猪</option></optgroup></select><span class="model-chevron" aria-hidden="true">⌄</span></div><div class="model-caption"><strong id="varietyName">Crimson Melon</strong><span id="modelMaterial">TRANSLUCENT JELLY</span></div></section>
+<section class="group"><div class="label"><label for="firm">Firmness</label><span id="firmVal">48</span></div><input id="firm" type="range" min="10" max="90" value="48"><div class="range-labels"><span>trembling</span><span>set</span></div></section>
+<section class="group"><div class="label"><label for="damp">Internal damping</label><span id="dampVal">34</span></div><input id="damp" type="range" min="5" max="92" value="34"><div class="range-labels"><span>lively</span><span>syrupy</span></div></section>
+<div class="actions"><button id="nudge">Give it a nudge</button><button id="reset">Reset</button><button id="pause" aria-pressed="false">Pause</button></div><div class="checks"><label><input id="slow" type="checkbox">¼ speed</label><label><input id="mesh" type="checkbox">Show mesh</label></div>
+</aside>
+<section class="readout"><div class="hint" id="hint">Grab a corner. Stretch the flesh. Let it wobble.<br>Drag background to orbit · scroll to zoom / twist a grab.</div><div class="data"><div class="datum"><label>Mass ≈</label><strong id="mass">—</strong></div><div class="datum"><label>Rel. volume</label><strong id="volume">100.0%</strong></div><div class="datum"><label>Kinetic</label><strong id="kinetic">0.0 mJ</strong></div></div><div class="foot">Illustrative units · 1 unit ≈ 8 cm · density ≈ 1.1 g/cm³<br>Volume and energy measured from the simulated body.</div></section>
+<details class="inside"><summary>Inside the experiment</summary><div class="notes"><p><b>Physics</b><br>A tetrahedral soft body with XPBD elastic and volume constraints. The rind is firmer; the flesh yields locally. Fixed timesteps, inversion barriers and ground friction keep it together.</p><p><b>Rendering</b><br>Native WebGPU renders a rounded 3D surface. A back-depth pass measures optical thickness for absorption and studio refraction. Fresnel reflections, soft shadows, and individually modeled seeds finish the specimen. Refraction and scattering are real-time approximations, not path tracing.</p><p><b>Interaction</b><br>Grab and stretch with mouse or touch. Scroll during a grab to gently twist. Seeds and bubbles are embedded in the same tetrahedra as the flesh. Arrow keys nudge, R resets, Space pauses.</p></div></details>
+
+<div class="fallback" id="fallback" role="alert"><article><div class="eyebrow">MATERIAL STUDIES / RENDERER NOTE</div><h2>This specimen needs WebGPU.</h2><p id="fallbackText">This soft-body study is authored directly for WebGPU and WGSL. No compatible GPU interface was exposed, so it has deliberately not been replaced by a lesser renderer. Try a current Chrome, Edge, or Safari build on supported hardware.</p></article></div>
+</div></main>
+<script src="tjm/js/front.js"></script>
+<script type="module">
+const $=s=>document.querySelector(s),canvas=$('#gpu'),stage=$('#stage');
+const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],len=a=>Math.hypot(...a),norm=a=>mul(a,1/(len(a)||1)),clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const R=1.65,A=.70,H=.38,TIP=1.74,NR=7,NA=12,NZ=4,DT=1/120;
+const nodes=[],tets=[],edges=[],tris=[],points=[],rings=[];
+let restVolume=0,mass=0,grab=null,paused=false,slow=false,mesh=false,variety=0,time=0,acc=0,last=0,raf=0,ready=false,manual=false;
+let camera={yaw:.65,pitch:.24,distance:5.0},vp,eye=[0,0,0],target=[0,.83,0],right=[1,0,0],up=[0,1,0];
+const presets=[{name:'Crimson',f:[.72,.026,.063],r:[.095,.23,.045]},{name:'Golden',f:[.88,.40,.035],r:[.21,.29,.065]},{name:'Rosé',f:[.79,.15,.23],r:[.075,.21,.10]}];
+// Procedural companion mesh. Both pig materials share one cached surface model;
+// the plush version additionally draws short tapered fiber geometry.
+const modelLibrary=Object.freeze([
+ {id:0,key:'crimson',name:'Crimson · 红瓤冻西瓜',title:'Melon',finish:'Jelly.',material:'TRANSLUCENT JELLY',kind:'melon'},
+ {id:1,key:'golden',name:'Golden · 金瓤冻西瓜',title:'Melon',finish:'Jelly.',material:'TRANSLUCENT JELLY',kind:'melon'},
+ {id:2,key:'rose',name:'Rosé · 粉瓤冻西瓜',title:'Melon',finish:'Jelly.',material:'TRANSLUCENT JELLY',kind:'melon'},
+ {id:3,key:'jelly-pig',name:'Jelly Pig · 果冻小猪',title:'Pig',finish:'Jelly.',material:'PINK TRANSMISSION',kind:'pig'},
+ {id:4,key:'plush-pig',name:'Plush Pig · 毛绒小猪',title:'Pig',finish:'Plush.',material:'SHORT-PILE PLUSH',kind:'pig'}
+]);
+let selectedModel=0,pigAsset=null,pigGPU=null;
+const pigState={position:new Float64Array(3),velocity:new Float64Array(3),sway:0,swayVelocity:0,squeeze:0,squeezeVelocity:0,twist:0,grab:null};
+// Real mesh material ids: 10 shell, 11 pink accents, 12 black bead eyes,
+// 13 recessed nostrils, 14 thread, 15 suspended bubble, 16 blush, 17 fiber.
+function buildPigAsset(){
+ const data=[],ix=[],partRanges=[];let seed=0x9137009;
+ const random=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/4294967296};
+ const signedPow=(x,e)=>Math.sign(x)*Math.pow(Math.abs(x),e);
+ function put(p,n,mat){const id=data.length/10;data.push(...p,...n,...p,mat);return id}
+ function tri(a,b,c){const o=a*10,p=b*10,q=c*10,ab=[data[p]-data[o],data[p+1]-data[o+1],data[p+2]-data[o+2]],ac=[data[q]-data[o],data[q+1]-data[o+1],data[q+2]-data[o+2]],normal=cross(ab,ac);if(len(normal)<1e-11)return;const outward=[data[o+3]+data[p+3]+data[q+3],data[o+4]+data[p+4]+data[q+4],data[o+5]+data[p+5]+data[q+5]];if(dot(normal,outward)<0)[b,c]=[c,b];ix.push(a,b,c)}
+ function form(name,c,r,angle=0,exponent=1,mat=10,lat=24,lon=40){
+  const start=ix.length,rows=[],ca=Math.cos(angle),sa=Math.sin(angle);
+  for(let j=0;j<=lat;j++){const row=[],v=Math.PI*j/lat;for(let k=0;k<=lon;k++){const u=2*Math.PI*k/lon,unit=[Math.sin(v)*Math.cos(u),Math.cos(v),Math.sin(v)*Math.sin(u)],x=signedPow(unit[0],exponent)*r[0],y=signedPow(unit[1],exponent)*r[1],z=signedPow(unit[2],exponent)*r[2];let n=norm([signedPow(unit[0],2-exponent)/r[0],signedPow(unit[1],2-exponent)/r[1],signedPow(unit[2],2-exponent)/r[2]]);row.push(put([c[0]+ca*x-sa*y,c[1]+sa*x+ca*y,c[2]+z],[ca*n[0]-sa*n[1],sa*n[0]+ca*n[1],n[2]],mat))}rows.push(row)}
+  for(let j=0;j<lat;j++)for(let k=0;k<lon;k++){tri(rows[j][k],rows[j+1][k],rows[j][k+1]);tri(rows[j][k+1],rows[j+1][k],rows[j+1][k+1])}partRanges.push({name,first:start,count:ix.length-start});
+ }
+ function tube(name,path,radius,mat=14,sides=6){const rows=[],start=ix.length;for(let j=0;j<path.length;j++){const p=path[j],before=path[Math.max(0,j-1)],after=path[Math.min(path.length-1,j+1)],t=norm(sub(after,before)),ref=Math.abs(t[1])>.95?[1,0,0]:[0,1,0],n=norm(cross(t,ref)),b=cross(t,n),row=[];for(let k=0;k<=sides;k++){const a=k/sides*Math.PI*2,nn=add(mul(n,Math.cos(a)),mul(b,Math.sin(a)));row.push(put(add(p,mul(nn,radius)),nn,mat))}rows.push(row)}for(let j=0;j<rows.length-1;j++)for(let k=0;k<sides;k++){tri(rows[j][k],rows[j+1][k],rows[j][k+1]);tri(rows[j][k+1],rows[j+1][k],rows[j+1][k+1])}partRanges.push({name,first:start,count:ix.length-start})}
+ // Outer silhouette follows the supplied front-view reference, not a billboard.
+ form('body',[0,.78,-.005],[.375,.47,.285],0,.85);
+ form('head',[0,1.67,.025],[.625,.50,.43],0,.88,10,36,56);
+ for(const s of [-1,1]){
+  form('ear '+s,[s*.405,2.09,-.018],[.145,.17,.103],-s*.24,.88,10,22,32);
+  form('inner ear '+s,[s*.405,2.105,.077],[.083,.10,.025],-s*.24,.92,11,16,24);
+  form('arm '+s,[s*.445,.89,.015],[.155,.27,.163],s*.66,.88);
+  form('paw '+s,[s*.561,.724,.059],[.158,.16,.17],s*.26,.86);
+  form('leg '+s,[s*.195,.295,-.005],[.168,.22,.183],-s*.07,.78);
+  form('foot '+s,[s*.195,.151,.063],[.176,.138,.218],0,.85);
+ }
+ const tail=[];for(let i=0;i<=52;i++){const t=i/52,a=t*Math.PI*3.4;tail.push([.13+Math.cos(a)*(.055+.04*t),.66+Math.sin(a)*(.055+.04*t),-.27-.26*t])}tube('curled tail',tail,.039,10,10);
+ const shellCount=ix.length;
+ // Facial details are convex geometry sitting on the cheek surface.
+ form('snout',[0,1.68,.456],[.219,.142,.088],0,.86,11,24,40);
+ for(const s of [-1,1]){
+  form('nostril '+s,[s*.080,1.684,.536],[.032,.040,.012],-s*.09,1,13,16,24);
+  form('eye '+s,[s*.302,1.704,.413],[.029,.033,.021],0,1,12,18,24);
+  form('blush '+s,[s*.412,1.572,.347],[.078,.041,.020],-s*.12,1,16,14,24);
+ }
+ const detailCount=ix.length;
+ // A seam follows the rounded belly and pairs of small hoof stitches.
+ const belly=[];for(let i=0;i<=32;i++){let a=.20+Math.PI*.87*i/32;belly.push([Math.cos(a)*.264,.78-Math.sin(a)*.325,.239+Math.sin(a)*.027])}tube('belly seam',belly,.0038);
+ for(const s of [-1,1]){
+  const hoof=[];for(let j=0;j<=8;j++)hoof.push([s*.195,.122+j*.011,.272-Math.pow((j-3)/8,2)*.014]);tube('split hoof '+s,hoof,.0045);
+  for(let i=0;i<9;i++){const y=1.02-i*.046,x=-.075+Math.sin(i*.65)*.008; tube('stitch '+s+' '+i,[[s*(x+.02),y,.272],[s*(x+.034),y+.008,.274]],.0028)}
+  for(let j=0;j<2;j++)tube('paw stitch '+s+' '+j,[[s*(.542+j*.038),.671,.208],[s*(.543+j*.038),.705,.218]],.0035);
+ }
+ const plushDetailCount=ix.length;
+ // Jelly air inclusions are modeled but only drawn for the translucent finish.
+ for(let i=0;i<15;i++){const x=(random()-.5)*.76,y=1.37+random()*.53,z=.37+random()*.03,r=.005+random()*.009;form('bubble '+i,[x,y,z],[r,r,r],0,1,15,6,10)}
+ const jellyBubbleCount=ix.length-plushDetailCount;
+ const baseVertexCount=data.length/10;
+ // Surface-area weighted short pile, not a screen-space noise overlay.
+ const cumulative=[],shellTriangles=[];let totalArea=0;
+ for(let i=0;i<shellCount;i+=3){const a=ix[i]*10,b=ix[i+1]*10,c=ix[i+2]*10,A=[data[a],data[a+1],data[a+2]],B=[data[b],data[b+1],data[b+2]],C=[data[c],data[c+1],data[c+2]],area=len(cross(sub(B,A),sub(C,A)))*.5;totalArea+=area;cumulative.push(totalArea);shellTriangles.push(i)}
+ const furFirst=ix.length,furRoots=[];
+ for(let f=0;f<18000;f++){const sample=random()*totalArea;let l=0,r=cumulative.length-1;while(l<r){const m=(l+r)>>1;if(cumulative[m]<sample)l=m+1;else r=m}const i=shellTriangles[l],a=ix[i]*10,b=ix[i+1]*10,c=ix[i+2]*10,ru=Math.sqrt(random()),v=random(),w=[1-ru,ru*(1-v),ru*v],p=[0,0,0],n=[0,0,0];for(let j=0;j<3;j++){p[j]=data[a+j]*w[0]+data[b+j]*w[1]+data[c+j]*w[2];n[j]=data[a+3+j]*w[0]+data[b+3+j]*w[1]+data[c+3+j]*w[2]}const nn=norm(n);if(p[2]>.36&&Math.abs(p[0])<.27&&Math.abs(p[1]-1.68)<.17)continue;
+  const root=add(p,mul(nn,.0008)),t=norm(cross(nn,Math.abs(nn[1])>.9?[1,0,0]:[0,1,0])),bvec=cross(nn,t),a0=random()*Math.PI*2,bend=add(mul(t,Math.cos(a0)),mul(bvec,Math.sin(a0))),length=.011+random()*.023,tip=add(add(root,mul(nn,length)),mul(bend,length*.38)),width=.0015+random()*.0012;
+  const v0=put(add(root,mul(t,width)),nn,17),v1=put(add(root,mul(t,-width)),nn,17),v2=put(tip,nn,17),v3=put(add(root,mul(bvec,width)),nn,17),v4=put(add(root,mul(bvec,-width)),nn,17);ix.push(v0,v1,v2,v1,v0,v2,v3,v4,v2,v4,v3,v2);furRoots.push(root);
+ }
+ const typed=new Float32Array(data),indexData=new Uint32Array(ix),unique=new Set(),wire=[];
+ for(let i=0;i<shellCount;i+=3)for(let k=0;k<3;k++){let a=ix[i+k],b=ix[i+(k+1)%3];if(a>b)[a,b]=[b,a];const key=a+','+b;if(!unique.has(key)){unique.add(key);wire.push(a,b)}}
+ return {rest:typed,vertices:typed.slice(),indices:indexData,wireIndices:new Uint32Array(wire),shellCount,detailCount,plushDetailCount,jellyBubbleFirst:plushDetailCount,jellyBubbleCount,furFirst,furCount:ix.length-furFirst,baseVertexCount,fibers:furRoots.length,parts:partRanges,faceBounds:{min:[-.66,.01,-.56],max:[.66,2.27,.56]}};
+}
+function ensurePigAsset(){if(!pigAsset)pigAsset=buildPigAsset();return pigAsset}
+function ensurePigGPU(){if(!device||pigGPU)return;const a=ensurePigAsset();pigGPU={vertex:device.createBuffer({label:'Pig shared rest/deformed mesh',size:a.rest.byteLength,usage:GPUBufferUsage.VERTEX|GPUBufferUsage.COPY_DST}),index:device.createBuffer({label:'Pig indexed parts and pile',size:a.indices.byteLength,usage:GPUBufferUsage.INDEX|GPUBufferUsage.COPY_DST}),wire:device.createBuffer({label:'Pig surface wireframe',size:a.wireIndices.byteLength,usage:GPUBufferUsage.INDEX|GPUBufferUsage.COPY_DST})};device.queue.writeBuffer(pigGPU.index,0,a.indices);device.queue.writeBuffer(pigGPU.wire,0,a.wireIndices);updatePigGeometry()}
+function resetPig(){pigState.position.fill(0);pigState.velocity.fill(0);pigState.sway=0;pigState.swayVelocity=0;pigState.squeeze=0;pigState.squeezeVelocity=0;pigState.twist=0;pigState.grab=null}
+function stepPig(){const p=pigState,firm=+$('#firm').value/100,damp=+$('#damp').value/100,plush=selectedModel===4,stiff=(plush?38:23)+firm*55,drag=(plush?5.5:2)+damp*12;p.swayVelocity+=(-stiff*p.sway-drag*p.swayVelocity)*DT;p.sway+=p.swayVelocity*DT;p.squeezeVelocity+=(-stiff*1.5*p.squeeze-drag*p.squeezeVelocity)*DT;p.squeeze=clamp(p.squeeze+p.squeezeVelocity*DT,-.17,.17);for(let j=0;j<3;j++){p.velocity[j]+=(-14*p.position[j]-drag*.8*p.velocity[j])*DT;p.position[j]+=p.velocity[j]*DT}if(p.grab)p.twist+=(p.grab.twist-p.twist)*.12;else p.twist*=.97;time+=DT}
+const pigScratch=new Float64Array(3);
+function pigPosition(x,y,z,out){const p=pigState,h=clamp(y/2.25,0,1),s=p.squeeze,k=1+s*.65,ang=p.sway*h+p.twist*h*.20,ca=Math.cos(ang),sa=Math.sin(ang);let px=x*k,py=y*(1-s),pz=z*k;out[0]=px*ca-py*sa+p.position[0];out[1]=Math.max(.011,px*sa+py*ca+p.position[1]);out[2]=pz+p.position[2];const g=p.grab;if(g){const dx=x-g.rest[0],dy=y-g.rest[1],dz=z-g.rest[2],w=Math.exp(-(dx*dx+dy*dy+dz*dz)/.21);for(let j=0;j<3;j++)out[j]+=(g.target[j]-g.start[j])*w*.64;out[1]=Math.max(.011,out[1])}}
+function updatePigGeometry(){if(!pigAsset)return;const rest=pigAsset.rest,out=pigAsset.vertices,p=pigState,count=selectedModel===4?rest.length/10:pigAsset.baseVertexCount;for(let i=0;i<count;i++){const o=i*10;pigPosition(rest[o],rest[o+1],rest[o+2],pigScratch);out[o]=pigScratch[0];out[o+1]=pigScratch[1];out[o+2]=pigScratch[2];const a=p.sway*clamp(rest[o+1]/2.25,0,1)+p.twist*clamp(rest[o+1]/2.25,0,1)*.20,ca=Math.cos(a),sa=Math.sin(a),nx=rest[o+3],ny=rest[o+4];out[o+3]=ca*nx-sa*ny;out[o+4]=sa*nx+ca*ny;out[o+5]=rest[o+5]}
+ if(pigGPU)device.queue.writeBuffer(pigGPU.vertex,0,out.buffer,0,count*40);
+}
+function pigMetrics(){const p=pigState,s=p.squeeze,volume=(1+s*.65)*(1+s*.65)*(1-s),m=selectedModel===4?145:420,ke=(dot(p.velocity,p.velocity)+p.swayVelocity*p.swayVelocity*.04+p.squeezeVelocity*p.squeezeVelocity*.08)*m*.002;return{mass:m,volume,kinetic:ke,time,minY:.011,rejectedSteps:0,minTetRatio:null,illustrative:true,solver:'spring deformation rig (not tetrahedral)'}}
+function pigPick(x,y){if(!pigAsset)return null;updatePigGeometry();const rr=ray(x,y),d=pigAsset.vertices,ix=pigAsset.indices;let distance=Infinity,hit=null;for(let i=0;i<pigAsset.detailCount;i+=3){const a=ix[i]*10,b=ix[i+1]*10,c=ix[i+2]*10,A=[d[a],d[a+1],d[a+2]],e1=[d[b]-d[a],d[b+1]-d[a+1],d[b+2]-d[a+2]],e2=[d[c]-d[a],d[c+1]-d[a+1],d[c+2]-d[a+2]],h=cross(rr.direction,e2),det=dot(e1,h);if(Math.abs(det)<1e-7)continue;const s=sub(rr.origin,A),u=dot(s,h)/det;if(u<0||u>1)continue;const q=cross(s,e1),v=dot(rr.direction,q)/det;if(v<0||u+v>1)continue;const t=dot(e2,q)/det;if(t>0&&t<distance){distance=t;hit=add(rr.origin,mul(rr.direction,t))}}return hit}
+function startPigGrab(hit){const p=pigState;p.grab={start:hit.slice(),target:hit.slice(),rest:sub(hit,p.position),normal:norm(sub(eye,target)),twist:0};grab=p.grab}
+function releaseGrab(){if(selectedModel>=3&&pigState.grab){const g=pigState.grab;pigState.swayVelocity+=clamp((g.target[0]-g.start[0])*2,-2,2);pigState.squeezeVelocity+=.22;pigState.grab=null}grab=null}
+function activeStep(){if(selectedModel>=3)stepPig();else physicsStep()}
+function activeGeometry(){if(selectedModel>=3)updatePigGeometry();else updateGeometry()}
+function modelInfo(){const a=pigAsset;return{...modelLibrary[selectedModel],vertices:selectedModel>=3?(selectedModel===4?a.rest.length/10:a.baseVertexCount):vertices.length,triangles:selectedModel>=3?(selectedModel===4?a.plushDetailCount+a.furCount:a.detailCount+a.jellyBubbleCount)/3:indices.length/3,fibers:selectedModel===4?a.fibers:0,parts:selectedModel>=3?a.parts.map(x=>x.name):['flesh','rind','seeds','bubbles']}}
+function updatePigCopy(){if(selectedModel<3)return;const english=(window.tjmLanguage?.current()||document.body.dataset.language)==='en';$('#hint').setAttribute('data-i18n','');$('.foot').setAttribute('data-i18n','');$('.notes').setAttribute('data-i18n','');$('#hint').textContent=english?(selectedModel===3?'Drag to stretch the jelly. Drag empty space to orbit; scroll to zoom.':'Drag to cuddle and release. Orbit to inspect the short pile and stitches.'):(selectedModel===3?'拖拽小猪轻拉回弹 · 拖拽空白旋转 · 滚轮缩放':'拖拽玩偶轻拉回弹 · 旋转查看短绒和缝线 · 滚轮缩放');$('.foot').textContent=english?'Pig motion uses a spring deformation rig. Readouts are illustrative, not tetrahedral measurements.':'小猪使用弹簧形变模型；读数为示意比例，不代表四面体体积测量。'}
+function selectModel(id){id=Number(id);if(!Number.isInteger(id)||!modelLibrary[id])throw new RangeError('Unknown model id');releaseGrab();pointer=null;selectedModel=id;if(id<3)variety=id;else ensurePigAsset();if(ready&&id>=3)ensurePigGPU();$('#modelSelect').value=String(id);$('#varietyName').textContent=modelLibrary[id].name;$('#modelMaterial').textContent=modelLibrary[id].material;$('#modelOrb').className='model-orb'+(id===3?' pig-jelly':id===4?' pig-plush':'');if(id<3)$('#modelOrb').style.background=id===1?'radial-gradient(circle at 34% 28%,#fff4a0,#e4ae32 49%,#54733d 51% 72%,#f2f0e7 75%)':id===2?'radial-gradient(circle at 34% 28%,#fff0ee,#df879d 49%,#345c47 51% 72%,#f2f0e7 75%)':'';else $('#modelOrb').style.background='';
+ const h=$('.mast h1');h.replaceChildren(document.createTextNode(modelLibrary[id].title+' '));const span=document.createElement('span');span.textContent=modelLibrary[id].finish;h.appendChild(span);
+ $('.tagline').textContent=id<3?'A slice of summer. A little wobble. Too soft to share.':id===3?'A little pink friend, cast in jelly. Soft edges. A heart full of light.':'A little pink friend, stitched with care. Short velvet pile. A softer kind of company.';
+ $('#hint').textContent=id<3?'Grab a corner. Stretch the flesh. Drag the background to orbit.':id===3?'拖拽小猪轻拉回弹 · 拖拽空白旋转 · 滚轮缩放':'拖拽玩偶轻拉回弹 · 旋转查看短绒和缝线 · 滚轮缩放';
+ $('.foot').textContent=id<3?'Illustrative units · 1 unit ≈ 8 cm · density ≈ 1.1 g/cm³. Volume and energy measured from the simulated body.':'小猪使用弹簧形变模型；读数为示意比例，不代表四面体体积测量。';
+ canvas.setAttribute('aria-label',modelLibrary[id].key+' — drag model to stretch; drag background to orbit; scroll to zoom.');$('.notes').innerHTML=id<3?melonNotes:'<p><b>REFERENCE & SHAPE</b><br>依据参考图构建的大头、小耳、凸鼻、短四肢与卷尾。全部由本地三角网格生成，不是图片贴面。</p><p><b>MATERIAL</b><br>'+(id===3?'果冻版本使用背面深度估算厚度、带颜色的透射、环境折射和微气泡。属于实时光学近似。':'毛绒版本含 '+pigAsset.fibers.toLocaleString()+' 簇短毛几何、绒面漫反射、缝线和脚趾线。')+'</p><p><b>MOTION</b><br>小猪使用独立弹簧形变与局部拖拽补丁；西瓜继续使用原有四面体软体。暂停、慢速、重置及网格查看均可使用。</p>';
+ updatePigCopy();reset();return modelInfo();
+}
+const melonNotes=$('.notes').innerHTML;
+
+function volume(a,b,c,d){return dot(sub(b,a),cross(sub(c,a),sub(d,a)))/6}
+function buildBody(){
+ points.push([0,TIP]);rings.push([0]);
+ for(let ri=1;ri<=NR;ri++){let ring=[];for(let ai=0;ai<=NA;ai++){let a=-A+2*A*ai/NA,r=R*ri/NR;ring.push(points.length);points.push([Math.sin(a)*r,TIP-Math.cos(a)*r])}rings.push(ring)}
+ for(let j=0;j<NA;j++)tris.push([0,rings[1][j],rings[1][j+1]]);
+ for(let i=1;i<NR;i++)for(let j=0;j<NA;j++){let a=rings[i][j],b=rings[i+1][j],c=rings[i+1][j+1],d=rings[i][j+1];tris.push([a,b,c],[a,c,d])}
+ let n=points.length,em=new Map();
+ for(let k=0;k<NZ;k++)for(const p of points){let r=[p[0],p[1],-H+2*H*k/(NZ-1)];nodes.push({r,p:r.slice(),old:r.slice(),v:[0,0,0],mass:0,w:0})}
+ for(let k=0;k<NZ-1;k++)for(const tri of tris){let [a,b,c]=[...tri].sort((x,y)=>x-y).map(i=>i+k*n),d=a+n,e=b+n,f=c+n;for(let ids of [[a,b,c,f],[a,b,e,f],[a,d,e,f]]){let v=volume(...ids.map(i=>nodes[i].r));if(v<0){[ids[1],ids[2]]=[ids[2],ids[1]];v=-v}tets.push({ids,rest:v,lambda:0});restVolume+=v;for(const id of ids)nodes[id].mass+=v*.5632/4;for(let j=0;j<4;j++)for(let l=j+1;l<4;l++){let x=Math.min(ids[j],ids[l]),y=Math.max(ids[j],ids[l]),key=x+','+y;if(!em.has(key)){let rx=nodes[x].r,ry=nodes[y].r;em.set(key,{a:x,b:y,rest:len(sub(rx,ry)),lambda:0,rind:(Math.hypot(rx[0],TIP-rx[1])+Math.hypot(ry[0],TIP-ry[1]))/2>R*.84})}}}}
+ edges.push(...em.values());for(const n of nodes){n.w=1/n.mass;mass+=n.mass}
+}
+buildBody();
+const grad=new Float64Array(12),safe=new Float64Array(nodes.length*3);
+function tetGrad(t){const a=nodes[t.ids[0]].p,b=nodes[t.ids[1]].p,c=nodes[t.ids[2]].p,d=nodes[t.ids[3]].p,bx=b[0]-a[0],by=b[1]-a[1],bz=b[2]-a[2],cx=c[0]-a[0],cy=c[1]-a[1],cz=c[2]-a[2],dx=d[0]-a[0],dy=d[1]-a[1],dz=d[2]-a[2];
+ grad[3]=(cy*dz-cz*dy)/6;grad[4]=(cz*dx-cx*dz)/6;grad[5]=(cx*dy-cy*dx)/6;
+ grad[6]=(dy*bz-dz*by)/6;grad[7]=(dz*bx-dx*bz)/6;grad[8]=(dx*by-dy*bx)/6;
+ grad[9]=(by*cz-bz*cy)/6;grad[10]=(bz*cx-bx*cz)/6;grad[11]=(bx*cy-by*cx)/6;
+ for(let j=0;j<3;j++)grad[j]=-grad[j+3]-grad[j+6]-grad[j+9];return bx*grad[3]+by*grad[4]+bz*grad[5];
+}
+function solveVolume(t,barrier=false){const v=tetGrad(t),goal=barrier?t.rest*.55:t.rest;if(barrier&&v>=goal)return;let alpha=barrier?0:1e-9/(DT*DT),den=alpha;for(let k=0;k<4;k++){const o=k*3;den+=nodes[t.ids[k]].w*(grad[o]**2+grad[o+1]**2+grad[o+2]**2)}let dl=(-(v-goal)-alpha*(barrier?0:t.lambda))/(den||1);if(!barrier)t.lambda+=dl;for(let k=0;k<4;k++){const n=nodes[t.ids[k]],o=k*3;for(let j=0;j<3;j++)n.p[j]+=n.w*dl*grad[o+j]}}
+let rejectedSteps=0;
+function physicsStep(){
+ const firmness=+$('#firm').value/100,damping=+$('#damp').value/100,compliance=.16*Math.pow(.015,firmness);
+ for(let i=0;i<nodes.length;i++){const n=nodes[i];for(let j=0;j<3;j++){safe[i*3+j]=n.p[j];n.old[j]=n.p[j]}n.v[1]-=2.6*DT;for(let j=0;j<3;j++)n.p[j]+=clamp(n.v[j],-4,4)*DT}
+ for(const e of edges)e.lambda=0;for(const t of tets)t.lambda=0;
+ for(let iteration=0;iteration<7;iteration++){
+  for(const e of edges){const a=nodes[e.a],b=nodes[e.b],dx=b.p[0]-a.p[0],dy=b.p[1]-a.p[1],dz=b.p[2]-a.p[2],l=Math.hypot(dx,dy,dz)||1e-9,alpha=compliance*(e.rind?.17:1)/(DT*DT),dl=(-(l-e.rest)-alpha*e.lambda)/(a.w+b.w+alpha);e.lambda+=dl;const wa=a.w*dl/l,wb=b.w*dl/l;a.p[0]-=wa*dx;a.p[1]-=wa*dy;a.p[2]-=wa*dz;b.p[0]+=wb*dx;b.p[1]+=wb*dy;b.p[2]+=wb*dz}
+  for(const t of tets)solveVolume(t);
+  if(grab){for(const q of grab.patch){const n=nodes[q.id],angle=grab.twist*q.weight,c=Math.cos(angle),s=Math.sin(angle),off=q.offset;const goal=[grab.target[0]+off[0]*c+off[2]*s,grab.target[1]+off[1],grab.target[2]-off[0]*s+off[2]*c];for(let j=0;j<3;j++)n.p[j]+=clamp(goal[j]-n.p[j],-.07,.07)*.42*q.weight}}
+  for(const t of tets)solveVolume(t,true);
+  for(const n of nodes)n.p[1]=Math.max(.012,n.p[1]);
+ }
+ // Alternate contact and inversion constraints so floor projection cannot crush tip cells.
+ for(let pass=0;pass<4;pass++){for(const t of tets)solveVolume(t,true);for(const n of nodes)n.p[1]=Math.max(.012,n.p[1]);}
+ // Reject an unsafe step rather than letting an inverted element propagate.
+ let valid=true;for(const t of tets){const v=tetGrad(t);if(!Number.isFinite(v)||v<t.rest*.08){valid=false;break}}if(!valid)rejectedSteps++;
+ for(let i=0;i<nodes.length;i++){const n=nodes[i];if(!valid){for(let j=0;j<3;j++){n.p[j]=safe[i*3+j];n.v[j]*=.1}continue}for(let j=0;j<3;j++)n.v[j]=(n.p[j]-n.old[j])/DT*Math.exp(-DT*(.35+damping*.9));if(n.p[1]<=.0121){n.v[0]*=.86;n.v[2]*=.86;if(n.old[1]>.015&&n.v[1]<0)n.v[1]*=-.12;else n.v[1]=Math.max(0,n.v[1])}}
+ for(const e of edges){let a=nodes[e.a],b=nodes[e.b],dx=b.p[0]-a.p[0],dy=b.p[1]-a.p[1],dz=b.p[2]-a.p[2],l=Math.hypot(dx,dy,dz)||1,rv=((b.v[0]-a.v[0])*dx+(b.v[1]-a.v[1])*dy+(b.v[2]-a.v[2])*dz)/(l*l),s=rv*(.012+damping*.13)/(a.w+b.w);a.v[0]+=dx*s*a.w;a.v[1]+=dy*s*a.w;a.v[2]+=dz*s*a.w;b.v[0]-=dx*s*b.w;b.v[1]-=dy*s*b.w;b.v[2]-=dz*s*b.w}
+ time+=DT;
+}
+const vertices=[],indices=[],surfaceMap=new Map();let fleshIndexCount=0;
+function embedding(p){let best=null,bestPenalty=Infinity;for(const t of tets){let [a,b,c,d]=t.ids.map(i=>nodes[i].r),v=t.rest*6,pa=sub(p,a),ba=sub(b,a),ca=sub(c,a),da=sub(d,a),w1=dot(pa,cross(ca,da))/v,w2=dot(ba,cross(pa,da))/v,w3=dot(ba,cross(ca,pa))/v,w=[1-w1-w2-w3,w1,w2,w3],penalty=w.reduce((s,x)=>s+Math.max(0,-x),0);if(penalty<bestPenalty){best={ids:t.ids,w};bestPenalty=penalty;if(penalty<1e-6)break}}return best}
+function vertex(p,material=0,share=false){const key=p.map(x=>x.toFixed(6)).join(',');if(share&&surfaceMap.has(key))return surfaceMap.get(key);const id=vertices.length;vertices.push({rest:p,material,bind:embedding(p),p:[0,0,0],normal:[0,0,0]});if(share)surfaceMap.set(key,id);return id}
+function triangle(a,b,c,outward){let n=cross(sub(vertices[b].rest,vertices[a].rest),sub(vertices[c].rest,vertices[a].rest));if(dot(n,outward)<0)[b,c]=[c,b];indices.push(a,b,c)}
+function edgeDistance(x,y){const r=Math.hypot(x,TIP-y);return Math.max(0,Math.min(R-r,(TIP-y)*Math.sin(A)-Math.abs(x)*Math.cos(A)))}
+function frontZ(x,y){const b=.085,d=Math.max(0,b-edgeDistance(x,y));return H-b+Math.sqrt(Math.max(0,b*b-d*d))}
+function buildSurface(){
+ const S=3;
+ for(const side of [-1,1])for(const tri of tris){const p=tri.map(i=>points[i]),grid=[];for(let i=0;i<=S;i++){grid[i]=[];for(let j=0;j<=S-i;j++){let w=[1-(i+j)/S,i/S,j/S],x=w.reduce((s,v,k)=>s+v*p[k][0],0),y=w.reduce((s,v,k)=>s+v*p[k][1],0);grid[i][j]=vertex([x,y,side*frontZ(x,y)],0,true)}}for(let i=0;i<S;i++)for(let j=0;j<S-i;j++){triangle(grid[i][j],grid[i+1][j],grid[i][j+1],[0,0,side]);if(j<S-i-1)triangle(grid[i+1][j],grid[i+1][j+1],grid[i][j+1],[0,0,side])}}
+ const outline=[0,...rings.slice(1).map(r=>r[0]),...rings[NR].slice(1),...rings.slice(1,NR).reverse().map(r=>r[NA])];
+ for(let i=0;i<outline.length;i++){let a=points[outline[i]],b=points[outline[(i+1)%outline.length]],out=norm([b[1]-a[1],a[0]-b[0],0]),grid=[];let midpoint=[(a[0]+b[0])/2,(a[1]+b[1])/2];if(dot(out,[midpoint[0],midpoint[1]-.9,0])<0)out=mul(out,-1);for(let j=0;j<=3;j++){grid[j]=[];let x=a[0]+(b[0]-a[0])*j/3,y=a[1]+(b[1]-a[1])*j/3,z=frontZ(x,y);for(let k=0;k<=6;k++)grid[j][k]=vertex([x,y,-z+2*z*k/6],0,true)}for(let j=0;j<3;j++)for(let k=0;k<6;k++){triangle(grid[j][k],grid[j+1][k],grid[j][k+1],out);triangle(grid[j+1][k],grid[j+1][k+1],grid[j][k+1],out)}}
+ fleshIndexCount=indices.length;
+ for(const side of [-1,1])for(let ring=0;ring<3;ring++){const radius=.57+ring*.29,count=3+ring*2;for(let k=0;k<count;k++){const a=-.53+(k+.5)*1.06/count+(ring%2)*.015,c=[Math.sin(a)*radius,TIP-Math.cos(a)*radius,side*(H-.014)];ellipsoid(c,[.032,.063,.025],a,1)}}
+ for(let i=0;i<10;i++){let a=Math.sin(i*37.2)*.46,r=.35+((i*137)%97)/97*.88,side=i%2?1:-1;ellipsoid([Math.sin(a)*r,TIP-Math.cos(a)*r,side*(H-.009)],[.011,.016,.010],a,2)}
+}
+function ellipsoid(center,scale,angle,material){const grid=[],lat=8,lon=12;for(let j=0;j<=lat;j++){grid[j]=[];const t=Math.PI*j/lat;for(let k=0;k<=lon;k++){const p=2*Math.PI*k/lon,shape=material===1?(.77+.23*Math.cos(t)):1,x=Math.sin(t)*Math.cos(p)*scale[0]*shape,y=Math.cos(t)*scale[1],z=Math.sin(t)*Math.sin(p)*scale[2];grid[j][k]=vertex([center[0]+x*Math.cos(angle)-y*Math.sin(angle),center[1]+x*Math.sin(angle)+y*Math.cos(angle),center[2]+z],material)}}for(let j=0;j<lat;j++)for(let k=0;k<lon;k++){for(const ids of [[grid[j][k],grid[j+1][k],grid[j][k+1]],[grid[j+1][k],grid[j+1][k+1],grid[j][k+1]]]){const mid=mul(ids.reduce((s,i)=>add(s,vertices[i].rest),[0,0,0]),1/3);triangle(...ids,sub(mid,center))}}}
+buildSurface();
+const vertexData=new Float32Array(vertices.length*10),lineData=new Float32Array(edges.length*6);
+function updateGeometry(){
+ for(const v of vertices){v.p.fill(0);v.normal.fill(0);for(let k=0;k<4;k++){const n=nodes[v.bind.ids[k]],w=v.bind.w[k];for(let j=0;j<3;j++)v.p[j]+=n.p[j]*w}}
+ for(let i=0;i<indices.length;i+=3){const a=vertices[indices[i]],b=vertices[indices[i+1]],c=vertices[indices[i+2]],abx=b.p[0]-a.p[0],aby=b.p[1]-a.p[1],abz=b.p[2]-a.p[2],acx=c.p[0]-a.p[0],acy=c.p[1]-a.p[1],acz=c.p[2]-a.p[2],nx=aby*acz-abz*acy,ny=abz*acx-abx*acz,nz=abx*acy-aby*acx;for(const v of [a,b,c]){v.normal[0]+=nx;v.normal[1]+=ny;v.normal[2]+=nz}}
+ for(let i=0;i<vertices.length;i++){const v=vertices[i],l=Math.hypot(...v.normal)||1,o=i*10;vertexData.set(v.p,o);vertexData[o+3]=v.normal[0]/l;vertexData[o+4]=v.normal[1]/l;vertexData[o+5]=v.normal[2]/l;vertexData.set(v.rest,o+6);vertexData[o+9]=v.material}
+ if(mesh){let o=0;for(const e of edges){lineData.set(nodes[e.a].p,o);lineData.set(nodes[e.b].p,o+3);o+=6}}
+}
+function matmul(a,b){let c=new Float32Array(16);for(let j=0;j<4;j++)for(let i=0;i<4;i++)for(let k=0;k<4;k++)c[j*4+i]+=a[k*4+i]*b[j*4+k];return c}
+function updateCamera(){const cp=Math.cos(camera.pitch),aspect0=canvas.width/canvas.height,fitWidth=selectedModel>=3?1.68:2.8,dist=Math.max(camera.distance,fitWidth/(2*Math.tan(.32)*aspect0));eye=add(target,[Math.sin(camera.yaw)*cp*dist,Math.sin(camera.pitch)*dist,Math.cos(camera.yaw)*cp*dist]);const z=norm(sub(eye,target));right=norm(cross([0,1,0],z));up=cross(z,right);const v=new Float32Array([right[0],up[0],z[0],0,right[1],up[1],z[1],0,right[2],up[2],z[2],0,-dot(right,eye),-dot(up,eye),-dot(z,eye),1]),aspect=canvas.width/canvas.height,f=1/Math.tan(.32),near=.05,far=40,p=new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,far/(near-far),-1,0,0,near*far/(near-far),0]);vp=matmul(p,v)}
+function project(p){let q=[...p,1],clip=[0,0,0,0];for(let i=0;i<4;i++)for(let j=0;j<4;j++)clip[i]+=vp[j*4+i]*q[j];const r=canvas.getBoundingClientRect();return [r.left+(clip[0]/clip[3]+1)*r.width/2,r.top+(1-clip[1]/clip[3])*r.height/2]}
+function ray(x,y){const r=canvas.getBoundingClientRect(),nx=((x-r.left)/r.width*2-1)*r.width/r.height*Math.tan(.32),ny=(1-(y-r.top)/r.height*2)*Math.tan(.32);return{origin:eye,direction:norm(add(norm(sub(target,eye)),add(mul(right,nx),mul(up,ny))))}}
+function pick(x,y){if(selectedModel>=3)return pigPick(x,y);const ray0=ray(x,y);let distance=Infinity,hit=null;for(let i=0;i<fleshIndexCount;i+=3){const a=vertices[indices[i]].p,b=vertices[indices[i+1]].p,c=vertices[indices[i+2]].p,e1=sub(b,a),e2=sub(c,a),h=cross(ray0.direction,e2),det=dot(e1,h);if(Math.abs(det)<1e-8)continue;const s=sub(ray0.origin,a),u=dot(s,h)/det;if(u<0||u>1)continue;const q=cross(s,e1),v=dot(ray0.direction,q)/det;if(v<0||u+v>1)continue;const d=dot(e2,q)/det;if(d>0&&d<distance){distance=d;hit=add(ray0.origin,mul(ray0.direction,d))}}return hit}
+function startGrab(hit){if(selectedModel>=3){startPigGrab(hit);return}grab={start:hit.slice(),target:hit.slice(),normal:norm(sub(eye,target)),twist:0,patch:[]};for(let id=0;id<nodes.length;id++){const n=nodes[id],d=len(sub(n.p,hit)),weight=Math.pow(Math.max(0,1-d/.46),2);if(weight>0)grab.patch.push({id,offset:sub(n.p,hit),weight})}if(!grab.patch.length){let id=0,best=Infinity;for(let i=0;i<nodes.length;i++){let d=len(sub(nodes[i].p,hit));if(d<best){best=d;id=i}}grab.patch.push({id,offset:sub(nodes[id].p,hit),weight:1})}}
+function moveGrab(x,y){const r=ray(x,y),den=dot(r.direction,grab.normal);if(Math.abs(den)<1e-5)return;let hit=add(r.origin,mul(r.direction,dot(sub(grab.start,r.origin),grab.normal)/den)),delta=sub(hit,grab.start);if(len(delta)>1.5)hit=add(grab.start,mul(norm(delta),1.5));hit[1]=Math.max(.16,hit[1]);grab.target=hit}
+const shader=`
+struct U { vp:mat4x4f, eye:vec4f, flesh:vec4f, rind:vec4f, resolution:vec4f, center:vec4f, cameraRight:vec4f, cameraUp:vec4f, forward:vec4f, theme:vec4f }
+@group(0) @binding(0) var<uniform> u:U;
+@group(0) @binding(1) var backDepth:texture_2d<f32>;
+struct In { @location(0) p:vec3f, @location(1) n:vec3f, @location(2) rest:vec3f, @location(3) material:f32 }
+struct Out { @builtin(position) clip:vec4f, @location(0) p:vec3f, @location(1) n:vec3f, @location(2) rest:vec3f, @location(3) material:f32 }
+@vertex fn vs(i:In)->Out {var o:Out;o.clip=u.vp*vec4f(i.p,1);o.p=i.p;o.n=i.n;o.rest=i.rest;o.material=i.material;return o;}
+@fragment fn depthFS(i:Out)->@location(0) f32 {return length(i.p-u.eye.xyz);}
+fn hash(p:vec3f)->f32{return fract(sin(dot(p,vec3f(127.1,311.7,74.7)))*43758.5453);}
+fn noise(p:vec3f)->f32{let ip=floor(p);let f=fract(p);let s=f*f*(3.-2.*f);return mix(mix(mix(hash(ip),hash(ip+vec3f(1,0,0)),s.x),mix(hash(ip+vec3f(0,1,0)),hash(ip+vec3f(1,1,0)),s.x),s.y),mix(mix(hash(ip+vec3f(0,0,1)),hash(ip+vec3f(1,0,1)),s.x),mix(hash(ip+vec3f(0,1,1)),hash(ip+vec3f(1,1,1)),s.x),s.y),s.z);}
+fn studio(d:vec3f)->vec3f{let whitePaper=vec3f(.760,.745,.716);let grayPaper=vec3f(.46,.47,.48);let blackPaper=vec3f(.035,.040,.050);let paper=select(select(whitePaper,grayPaper,u.theme.x>.5),blackPaper,u.theme.x>1.5);let upper=smoothstep(-.35,.85,d.y);let lift=select(select(vec3f(.94,.94,.91),vec3f(.66,.68,.72),u.theme.x>.5),vec3f(.12,.14,.20),u.theme.x>1.5);var color=mix(paper*.80,lift,upper);let key=pow(max(0.,dot(d,normalize(vec3f(-.65,1.,1.3)))),35.);let rim=pow(max(0.,dot(d,normalize(vec3f(1.2,.5,-.7)))),55.);return color+key*vec3f(1.9,1.8,1.65)+rim*vec3f(.7,.8,.85);}
+fn srgb(c:vec3f)->vec3f{return mix(c*12.92,1.055*pow(max(c,vec3f(0)),vec3f(1./2.4))-.055,step(vec3f(.0031308),c));}
+fn highlight(n:vec3f,v:vec3f,l:vec3f,rough:f32)->f32{let h=normalize(v+l);let nh=max(dot(n,h),0.);let nv=max(dot(n,v),.01);let nl=max(dot(n,l),0.);let a=rough*rough;let a2=a*a;let d=a2/(3.14159*pow(nh*nh*(a2-1.)+1.,2.));let k=pow(rough+1.,2.)/8.;let g=(nv/(nv*(1.-k)+k))*(nl/(nl*(1.-k)+k));return min(2.5,d*g*.045/(4.*nv+.001));}
+// Pig finish is selected by u.theme.y (3 jelly, 4 plush). Surfaces use
+// material IDs rather than the melon's radial rind lookup.
+fn pigColor(i:Out,n:vec3f,v:vec3f)->vec3f {
+ let light=normalize(vec3f(-.65,1.1,1.4));let nv=max(.001,dot(n,v));let nl=max(0.,dot(n,light));
+ let material=i.material;let isPlush=u.theme.y>3.5;let fur=material>16.5;
+ let black=material>11.5&&material<12.5;let nostril=material>12.5&&material<13.5;
+ let thread=material>13.5&&material<14.5;let bubble=material>14.5&&material<15.5;
+ let blush=material>15.5&&material<16.5;let accent=material>10.5&&material<11.5;
+ let nL=normalize(vec3f(1.,.55,-.75));let fill=max(dot(n,nL),0.);
+ var base=vec3f(.89,.67,.65);if(accent){base=vec3f(.86,.31,.35);}if(blush){base=vec3f(.94,.45,.48);}if(thread){base=vec3f(.58,.29,.30);}
+ if(black){let spec=highlight(n,v,light,.18);return vec3f(.007,.004,.006)*(.5+nl)+studio(reflect(-v,n))*.05+vec3f(spec*.7);}
+ if(nostril){return vec3f(.26,.053,.07)*(.5+nl*.5)+vec3f(highlight(n,v,light,.45)*.15);}
+ if(isPlush){
+  let grain=noise(i.rest*230.);let tiny=hash(floor(i.rest*1500.));let fiberShadow=mix(.84,1.04,grain);
+  let wrap=clamp((dot(n,light)+.5)/1.5,0.,1.);var c=base*(.35+wrap*.54+fill*.12)*fiberShadow;
+  let grazing=pow(1.-nv,3.0);c+=vec3f(1.,.81,.76)*grazing*(.16+nl*.11);
+  c+=vec3f(.055)*max(0.,tiny-.48);if(fur){c*=.92+grain*.15;c+=vec3f(.13,.09,.07)*grazing;}
+  if(accent){c+=vec3f(highlight(n,v,light,.72)*.1);}return c;
+ }
+ // The clear version has weak bulk scattering and strong tinted transmission.
+ let dist=length(i.p-u.eye.xyz);let back=textureLoad(backDepth,vec2i(i.clip.xy),0).x;let thickness=clamp(back-dist,.018,1.35);
+ let refr=refract(-v,n,1./1.38);let rd=normalize(select(reflect(-v,n),refr,length(refr)>.01));
+ var behind=studio(rd)*.75;
+ let planeT=-(i.p.y-.045)/min(rd.y,-.005);let floorPoint=i.p+rd*max(0.,planeT);
+ let floorTone=select(select(vec3f(.72,.71,.69),vec3f(.43,.45,.49),u.theme.x>.5),vec3f(.055,.065,.095),u.theme.x>1.5);
+ let floorBlend=(1.-smoothstep(-.24,.06,rd.y))*.7;behind=mix(behind,floorTone,floorBlend);let shadow=exp(-dot(floorPoint.xz,floorPoint.xz)*2.);behind*=1.-shadow*.16*floorBlend;
+ let absorption=select(vec3f(.18,1.6,1.12),vec3f(.24,2.7,1.8),accent);let trans=exp(-absorption*thickness*1.7);
+ let pigment=select(vec3f(.95,.11,.23),vec3f(.90,.035,.10),accent);
+ let fres=.035+.965*pow(1.-nv,5.);let backGlow=pow(max(0.,dot(-light,rd)),3.);
+ var c=behind*trans*.90+pigment*(1.-trans)*(.17+.18*nl)+pigment*(.028+backGlow*.18)*exp(-thickness);
+ let reflection=studio(reflect(-v,n));c=mix(c,reflection,fres*.72);
+ c+=vec3f(1.,.93,.91)*highlight(n,v,light,select(.16,.23,accent))*1.35;
+ c+=vec3f(.69,.78,1.)*highlight(n,v,nL,.19)*.35;
+ c+=vec3f(1.,.43,.53)*pow(1.-nv,3.)*.14;
+ if(bubble){c=mix(c,vec3f(.90,.74,.82),pow(1.-nv,2.5)*.55);c+=vec3f(highlight(n,v,light,.12)*.55);}
+ if(blush){c=mix(c,vec3f(.75,.19,.24),.20);}return c;
+}
+
+@fragment fn fs(i:Out)->@location(0) vec4f {
+ if(i.material>9.5){let c=pigColor(i,normalize(i.n),normalize(u.eye.xyz-i.p));return vec4f(srgb(c/(1.+c*.16)),1);}
+ let n=normalize(i.n);let v=normalize(u.eye.xyz-i.p);let light=normalize(vec3f(-.65,1.1,1.4));let nl=max(0.,dot(n,light));let nv=max(0.,dot(n,v));
+ let radial=length(vec2f(i.rest.x,1.74-i.rest.y));let pale=smoothstep(1.35,1.43,radial);let skin=smoothstep(1.565,1.61,radial);
+ let back=textureLoad(backDepth,vec2i(i.clip.xy),0).x;let thickness=clamp(back-length(i.p-u.eye.xyz),.035,2.5);
+ let absorption=mix(vec3f(.40,3.6,2.8),vec3f(.36,1.0,3.5),step(.2,u.flesh.g));
+ let transmission=exp(-absorption*thickness*1.25);let refracted=refract(-v,n,1./1.36);
+ let tangent=normalize(cross(n,normalize(vec3f(.2,1.,.1))));let blur=(1.-nv)*.035+thickness*.008;let behind0=studio(refracted);let behind1=studio(normalize(refracted+tangent*blur));let behind2=studio(normalize(refracted-tangent*blur));var behind=behind0*.52+behind1*.24+behind2*.24;
+ let refrBand=pow(max(0.,1.-abs(refracted.x*.82+refracted.y*.28-.08)*5.5),4.);let refrBand2=pow(max(0.,1.-abs(refracted.x*.35-refracted.y*.9+.32)*7.),5.);behind+=vec3f(.52,.58,.68)*refrBand*.32+vec3f(.95,.88,.78)*refrBand2*.20;
+ let scatter=pow(max(0.,dot(-light,refracted)),3.);
+ let pores=noise(i.rest*105.)-.5;let broad=noise(i.rest*8.);
+ let thinGlow=pow(1.-clamp(thickness/1.25,0.,1.),1.7);let bodyDensity=1.-exp(-thickness*1.05);
+ var c=behind*transmission*.88+u.flesh.rgb*(.095+.22*nl+pores*.028+broad*.035)*bodyDensity;
+ c+=u.flesh.rgb*(.055+scatter*.28)*exp(-thickness*.66)+u.flesh.rgb*thinGlow*.22;
+ // subtle transmitted softbox streaks make the candy read as a clear volume
+ let internalBox=pow(max(0.,dot(refracted,normalize(vec3f(-.7,.65,.9)))),18.);c+=vec3f(1.,.72,.70)*internalBox*.10*transmission;
+ let cream=vec3f(.72,.80,.43)*(.62+.35*nl)+studio(refracted)*exp(-thickness*3.)*.075;
+ let angle=atan2(i.rest.x,1.74-i.rest.y);let stripe=sin(angle*42.+noise(i.rest*8.)*3.+sin(i.rest.z*17.)*.45);
+ let green=mix(u.rind.rgb*.28,u.rind.rgb*1.2,smoothstep(-.30,.25,stripe))*(.48+.62*nl);
+ c=mix(c,cream,pale);c=mix(c,green,skin);
+ var rough=mix(.23,.34,pale);rough=mix(rough,.24,skin);
+ if(i.material>.5&&i.material<1.5){c=vec3f(.019,.009,.006)*(.65+nl*.5);rough=.25;}
+ if(i.material>1.5){c=mix(u.flesh.rgb*.6,vec3f(.80,.72,.64),pow(1.-nv,2.));rough=.12;}
+ let fres=.035+.965*pow(1.-nv,5.);let reflected=studio(reflect(-v,n));let meniscus=pow(1.-nv,3.)*(1.-pale);c+=vec3f(1.,.62,.66)*meniscus*.16;
+ let reflection=reflect(-v,n);let softbox=pow(max(0.,dot(reflection,normalize(vec3f(-.5,.75,1.5)))),12.);
+ c+=reflected*fres*.62+vec3f(1.,.96,.87)*highlight(n,v,light,rough)*1.65;
+ c+=vec3f(.85,.87,.83)*softbox*.055*(1.-pale*.65);
+ c+=vec3f(.60,.72,.70)*highlight(n,v,normalize(vec3f(1.,.7,-1.)),rough)*.55;
+ c=c/(1.+c*.26);return vec4f(srgb(c),1);
+}
+struct Full { @builtin(position) p:vec4f, @location(0) uv:vec2f }
+@vertex fn fullscreen(@builtin(vertex_index) i:u32)->Full{let p=array<vec2f,3>(vec2f(-1,-1),vec2f(3,-1),vec2f(-1,3));var o:Full;o.p=vec4f(p[i],.9999,1);o.uv=p[i];return o;}
+@fragment fn floorFS(i:Full)->@location(0) vec4f {
+ let direction=normalize(u.forward.xyz+u.cameraRight.xyz*i.uv.x*u.resolution.z*.331389+u.cameraUp.xyz*i.uv.y*.331389);
+ let whitePaper=vec3f(.760,.745,.716);let grayPaper=vec3f(.46,.47,.48);let blackPaper=vec3f(.035,.040,.050);var c=select(select(whitePaper,grayPaper,u.theme.x>.5),blackPaper,u.theme.x>1.5);let t=-u.eye.y/direction.y;
+ if(t>0.){let p=u.eye.xyz+direction*t;let d=p.xz-u.center.xz;let h=max(.08,u.center.y-.55);let shadow=exp(-dot(d/vec2f(.85+h*.35,.42+h*.3),d/vec2f(.85+h*.35,.42+h*.3))*2.3);let contact=exp(-dot(d/vec2f(.65,.26),d/vec2f(.65,.26))*3.2);c*=1.-shadow*.20/(1.+h)-contact*.13/(1.+h*5.);}
+ c+=(hash(vec3f(i.p.xy,0))-.5)*.002;return vec4f(srgb(c),1);
+}
+struct LineOut{@builtin(position) p:vec4f}
+@vertex fn lineVS(@location(0) p:vec3f)->LineOut{var o:LineOut;o.p=u.vp*vec4f(p,1);return o;}
+@fragment fn lineFS()->@location(0) vec4f{let k=select(.18,.76,u.theme.x>1.5);return vec4f(k,k,k,.26);}
+`;
+let device,context,format,uniformBuffer,vertexBuffer,indexBuffer,lineBuffer,mainPipeline,backPipeline,floorPipeline,linePipeline,bindGroup,backGroup,backTexture,depthTexture,backZ,pigWirePipeline;
+const uniforms=new Float32Array(52);
+function setStatus(label,mode=''){const s=$('#status');s.className='status '+mode;s.querySelector('span').textContent='WEBGPU · '+label}
+function fail(message){ready=false;cancelAnimationFrame(raf);$('#fallback').classList.add('show');$('#fallbackText').textContent=message;document.querySelectorAll('.panel button,.panel input,.panel select').forEach(e=>e.disabled=true);setStatus('UNAVAILABLE','unavailable')}
+function resize(){if(!device)return;const r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio,1.6),w=Math.max(1,Math.round(r.width*dpr)),h=Math.max(1,Math.round(r.height*dpr));if(canvas.width===w&&canvas.height===h&&backTexture)return;canvas.width=w;canvas.height=h;for(const t of [backTexture,depthTexture,backZ])t?.destroy();backTexture=device.createTexture({size:[w,h],format:'r32float',usage:GPUTextureUsage.RENDER_ATTACHMENT|GPUTextureUsage.TEXTURE_BINDING});depthTexture=device.createTexture({size:[w,h],format:'depth24plus',usage:GPUTextureUsage.RENDER_ATTACHMENT});backZ=device.createTexture({size:[w,h],format:'depth24plus',usage:GPUTextureUsage.RENDER_ATTACHMENT});bindGroup=device.createBindGroup({layout:mainPipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:uniformBuffer}},{binding:1,resource:backTexture.createView()}]});updateCamera()}
+async function init(){
+ if(!navigator.gpu)return fail('This experiment needs native WebGPU. Open it in a current Chrome, Edge or Safari on supported hardware, using localhost or HTTPS. No Canvas or WebGL imitation is substituted.');
+ try{const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(!adapter)return fail('WebGPU is available, but no compatible graphics adapter was found. Check hardware acceleration and try a current browser.');device=await adapter.requestDevice();device.addEventListener('uncapturederror',e=>fail('WebGPU rendering error: '+e.error.message));device.lost.then(info=>fail('The graphics device was lost: '+info.message+' Reload the page to restart the experiment.'));
+ context=canvas.getContext('webgpu');format=navigator.gpu.getPreferredCanvasFormat();context.configure({device,format,alphaMode:'opaque'});
+ const module=device.createShaderModule({code:shader,label:'Melon genuine 3D WGSL'}),info=await module.getCompilationInfo();const errors=info.messages.filter(x=>x.type==='error');if(errors.length)throw Error(errors.map(x=>x.lineNum+': '+x.message).join('\n'));
+ const layout=device.createBindGroupLayout({entries:[{binding:0,visibility:GPUShaderStage.VERTEX|GPUShaderStage.FRAGMENT,buffer:{type:'uniform'}},{binding:1,visibility:GPUShaderStage.FRAGMENT,texture:{sampleType:'unfilterable-float'}}]}),simpleLayout=device.createBindGroupLayout({entries:[{binding:0,visibility:GPUShaderStage.VERTEX|GPUShaderStage.FRAGMENT,buffer:{type:'uniform'}}]});
+ const fullLayout=device.createPipelineLayout({bindGroupLayouts:[layout]}),simple=device.createPipelineLayout({bindGroupLayouts:[simpleLayout]}),buffers=[{arrayStride:40,attributes:[{shaderLocation:0,offset:0,format:'float32x3'},{shaderLocation:1,offset:12,format:'float32x3'},{shaderLocation:2,offset:24,format:'float32x3'},{shaderLocation:3,offset:36,format:'float32'}]}];
+ mainPipeline=await device.createRenderPipelineAsync({layout:fullLayout,vertex:{module,entryPoint:'vs',buffers},fragment:{module,entryPoint:'fs',targets:[{format}]},primitive:{topology:'triangle-list',cullMode:'back'},depthStencil:{format:'depth24plus',depthWriteEnabled:true,depthCompare:'less'}});
+ backPipeline=await device.createRenderPipelineAsync({layout:simple,vertex:{module,entryPoint:'vs',buffers},fragment:{module,entryPoint:'depthFS',targets:[{format:'r32float'}]},primitive:{topology:'triangle-list',cullMode:'front'},depthStencil:{format:'depth24plus',depthWriteEnabled:true,depthCompare:'greater'}});
+ floorPipeline=await device.createRenderPipelineAsync({layout:simple,vertex:{module,entryPoint:'fullscreen'},fragment:{module,entryPoint:'floorFS',targets:[{format}]},depthStencil:{format:'depth24plus',depthWriteEnabled:false,depthCompare:'always'}});
+ linePipeline=await device.createRenderPipelineAsync({layout:simple,vertex:{module,entryPoint:'lineVS',buffers:[{arrayStride:12,attributes:[{shaderLocation:0,offset:0,format:'float32x3'}]}]},fragment:{module,entryPoint:'lineFS',targets:[{format,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'line-list'},depthStencil:{format:'depth24plus',depthWriteEnabled:false,depthCompare:'always'}});
+ pigWirePipeline=await device.createRenderPipelineAsync({label:'Pig real surface mesh',layout:simple,vertex:{module,entryPoint:'lineVS',buffers:[{arrayStride:40,attributes:[{shaderLocation:0,offset:0,format:'float32x3'}]}]},fragment:{module,entryPoint:'lineFS',targets:[{format,blend:{color:{srcFactor:'src-alpha',dstFactor:'one-minus-src-alpha'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha'}}}]},primitive:{topology:'line-list'},depthStencil:{format:'depth24plus',depthWriteEnabled:false,depthCompare:'less-equal'}});
+ const buffer=(size,usage)=>device.createBuffer({size,usage:usage|GPUBufferUsage.COPY_DST});uniformBuffer=buffer(208,GPUBufferUsage.UNIFORM);vertexBuffer=buffer(vertexData.byteLength,GPUBufferUsage.VERTEX);indexBuffer=buffer(indices.length*4,GPUBufferUsage.INDEX);lineBuffer=buffer(lineData.byteLength,GPUBufferUsage.VERTEX);device.queue.writeBuffer(indexBuffer,0,new Uint32Array(indices));backGroup=device.createBindGroup({layout:simpleLayout,entries:[{binding:0,resource:{buffer:uniformBuffer}}]});resize();ready=true;if(selectedModel>=3)ensurePigGPU();setStatus(paused?'PAUSED':'LIVE');document.documentElement.dataset.rendererReady='true';last=performance.now();raf=requestAnimationFrame(loop);
+ }catch(e){console.error(e);fail('Unable to start the WebGPU renderer.\n'+e.message)}
+}
+function metrics(){if(selectedModel>=3)return pigMetrics();let v=0,ke=0,min=Infinity;for(const t of tets){let x=tetGrad(t);v+=x;min=Math.min(min,x/t.rest)}for(const n of nodes)ke+=.5*n.mass*dot(n.v,n.v)*.08*.08*1000;return{volume:v/restVolume,kinetic:ke,minTetRatio:min,mass:mass*1000,time,rejectedSteps,minY:Math.min(...nodes.map(n=>n.p[1]))}}
+let lastReadout=-1;
+function render(){if(!ready)return;resize();updateCamera();activeGeometry();if(selectedModel<3)device.queue.writeBuffer(vertexBuffer,0,vertexData);const center=[0,0,0];if(selectedModel>=3){center[0]=pigState.position[0];center[1]=.45+pigState.position[1];center[2]=pigState.position[2]}else for(const n of nodes)for(let j=0;j<3;j++)center[j]+=n.p[j]*n.mass/mass;uniforms.set(vp,0);uniforms.set([...eye,1],16);uniforms.set([...presets[variety].f,1],20);uniforms.set([...presets[variety].r,1],24);uniforms.set([canvas.width,canvas.height,canvas.width/canvas.height,time],28);uniforms.set([...center,1],32);uniforms.set([...right,0],36);uniforms.set([...up,0],40);uniforms.set([...norm(sub(target,eye)),0],44);let themeCode=document.body.dataset.theme==='black'?2:(document.body.dataset.theme==='gray'?1:0);uniforms.set([themeCode,selectedModel,0,0],48);device.queue.writeBuffer(uniformBuffer,0,uniforms);
+ const encoder=device.createCommandEncoder();let pass=encoder.beginRenderPass({colorAttachments:[{view:backTexture.createView(),clearValue:{r:0,g:0,b:0,a:0},loadOp:'clear',storeOp:'store'}],depthStencilAttachment:{view:backZ.createView(),depthClearValue:0,depthLoadOp:'clear',depthStoreOp:'discard'}});pass.setPipeline(backPipeline);pass.setBindGroup(0,backGroup);pass.setVertexBuffer(0,selectedModel>=3?pigGPU.vertex:vertexBuffer);pass.setIndexBuffer(selectedModel>=3?pigGPU.index:indexBuffer,'uint32');pass.drawIndexed(selectedModel>=3?pigAsset.shellCount:fleshIndexCount);pass.end();
+ pass=encoder.beginRenderPass({colorAttachments:[{view:context.getCurrentTexture().createView(),clearValue:document.body.dataset.theme==='black'?{r:.018,g:.02,b:.026,a:1}:(document.body.dataset.theme==='gray'?{r:.46,g:.47,b:.48,a:1}:{r:.76,g:.745,b:.716,a:1}),loadOp:'clear',storeOp:'store'}],depthStencilAttachment:{view:depthTexture.createView(),depthClearValue:1,depthLoadOp:'clear',depthStoreOp:'discard'}});pass.setPipeline(floorPipeline);pass.setBindGroup(0,backGroup);pass.draw(3);pass.setPipeline(mainPipeline);pass.setBindGroup(0,bindGroup);if(selectedModel>=3){pass.setVertexBuffer(0,pigGPU.vertex);pass.setIndexBuffer(pigGPU.index,'uint32');pass.drawIndexed(selectedModel===4?pigAsset.plushDetailCount:pigAsset.detailCount);if(selectedModel===3)pass.drawIndexed(pigAsset.jellyBubbleCount,1,pigAsset.jellyBubbleFirst);if(selectedModel===4)pass.drawIndexed(pigAsset.furCount,1,pigAsset.furFirst);if(mesh){pass.setPipeline(pigWirePipeline);pass.setBindGroup(0,backGroup);pass.setIndexBuffer(pigGPU.wire,'uint32');pass.drawIndexed(pigAsset.wireIndices.length)}}else{pass.setVertexBuffer(0,vertexBuffer);pass.setIndexBuffer(indexBuffer,'uint32');pass.drawIndexed(indices.length);if(mesh){device.queue.writeBuffer(lineBuffer,0,lineData);pass.setPipeline(linePipeline);pass.setBindGroup(0,backGroup);pass.setVertexBuffer(0,lineBuffer);pass.draw(edges.length*2)}}pass.end();device.queue.submit([encoder.finish()]);
+ if(time-lastReadout>.1||lastReadout<0||paused){let m=metrics();$('#mass').textContent=m.mass.toFixed(0)+' g';$('#volume').textContent=(m.volume*100).toFixed(1)+'%';$('#kinetic').textContent=m.kinetic.toFixed(1)+' mJ';lastReadout=time}
+}
+function loop(now){if(!ready||manual)return;const elapsed=Math.min(.05,(now-last)/1000);last=now;if(!paused){acc+=elapsed*(slow?.25:1);let count=0;while(acc>=DT&&count<6){activeStep();acc-=DT;count++}if(count===6)acc=Math.min(acc,DT)}render();raf=requestAnimationFrame(loop)}
+function reset(){grab=null;pointer=null;resetPig();time=0;acc=0;rejectedSteps=0;lastReadout=-1;for(const n of nodes){n.p=n.r.slice();n.old=n.r.slice();n.v.fill(0)}target=selectedModel>=3?[0,1.12,0]:[0,.83,0];camera=selectedModel>=3?{yaw:.16,pitch:.10,distance:5.5}:{yaw:.65,pitch:.24,distance:5.0};activeGeometry();if(ready)render()}
+function nudge(direction=1){if(selectedModel>=3){pigState.swayVelocity+=direction*(selectedModel===4?.65:1.35);pigState.squeezeVelocity+=.58;pigState.velocity[1]+=.20;if(paused){paused=false;syncPause()}return}for(const n of nodes){const w=clamp(n.p[1]/TIP,.1,1);n.v[0]+=.65*w*direction;n.v[1]+=.24*w;n.v[2]+=.15*w}if(paused){paused=false;syncPause()}}
+function syncPause(){$('#pause').textContent=paused?'Resume':'Pause';$('#pause').setAttribute('aria-pressed',String(paused));if(ready)setStatus(paused?'PAUSED':'LIVE',paused?'paused':'');acc=0;last=performance.now()}
+let pointer=null;
+canvas.addEventListener('pointerdown',e=>{if(!ready||pointer||e.button!==0)return;canvas.setPointerCapture(e.pointerId);activeGeometry();const hit=pick(e.clientX,e.clientY);pointer={id:e.pointerId,x:e.clientX,y:e.clientY,yaw:camera.yaw,pitch:camera.pitch};if(hit&&!paused){startGrab(hit);canvas.style.cursor='grabbing'}});
+canvas.addEventListener('pointermove',e=>{if(!pointer||pointer.id!==e.pointerId)return;if(grab)moveGrab(e.clientX,e.clientY);else{camera.yaw=pointer.yaw-(e.clientX-pointer.x)*.006;camera.pitch=clamp(pointer.pitch+(e.clientY-pointer.y)*.004,-.12,1.1)}});
+function release(e){if(pointer&&e.pointerId!==pointer.id)return;releaseGrab();pointer=null;canvas.style.cursor='grab';if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId)}
+canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',()=>{releaseGrab();pointer=null});
+canvas.addEventListener('wheel',e=>{e.preventDefault();if(grab)grab.twist=clamp(grab.twist+e.deltaY*.003,-.8,.8);else camera.distance=clamp(camera.distance*Math.exp(e.deltaY*.001),3.5,7)},{passive:false});
+canvas.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();paused=!paused;releaseGrab();syncPause()}else if(e.key.toLowerCase()==='r')reset();else if(e.key.startsWith('Arrow')){e.preventDefault();nudge(e.key==='ArrowLeft'?-1:1)}});
+$('#nudge').onclick=()=>nudge();$('#reset').onclick=reset;$('#pause').onclick=()=>{paused=!paused;releaseGrab();syncPause()};$('#slow').onchange=e=>{slow=e.target.checked;acc=0};$('#mesh').onchange=e=>mesh=e.target.checked;
+for(const id of ['firm','damp'])$('#'+id).oninput=e=>$('#'+id+'Val').textContent=e.target.value;
+$('#modelSelect').onchange=e=>selectModel(e.target.value);document.addEventListener('tjm:languagechange',updatePigCopy);
+const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');if(motionPreference.matches){$('#damp').value=78;$('#dampVal').textContent='78';slow=true;$('#slow').checked=true}
+document.addEventListener('visibilitychange',()=>{acc=0;last=performance.now();grab=null;pointer=null});new ResizeObserver(()=>{if(ready)resize()}).observe(stage);
+window.__melon={metrics,project,pick,reset,get ready(){return ready},get nodes(){return nodes},get vertices(){return vertices},get camera(){return camera},get topology(){if(selectedModel>=3){const info=modelInfo();return{solver:'spring-rig',nodes:0,tets:0,edges:pigAsset.wireIndices.length/2,vertices:info.vertices,triangles:info.triangles,fibers:info.fibers}}return{solver:'tetrahedral',nodes:nodes.length,tets:tets.length,edges:edges.length,vertices:vertices.length,triangles:indices.length/3}},get state(){return{paused,slow,mesh,variety,model:selectedModel,grab:!!grab}},models:modelLibrary,selectModel,get modelInfo(){return modelInfo()},pauseRAF(){manual=true;cancelAnimationFrame(raf)},resumeRAF(){manual=false;last=performance.now();raf=requestAnimationFrame(loop)},advance(seconds){manual=true;cancelAnimationFrame(raf);if(!paused)for(let i=0;i<Math.round(seconds*(slow?.25:1)/DT);i++)activeStep();render();return metrics()},grabAt(p){activeGeometry();startGrab(p)},moveTo(p){if(grab){let d=sub(p,grab.start);grab.target=len(d)>1.5?add(grab.start,mul(norm(d),1.5)):p.slice();grab.target[1]=Math.max(.16,grab.target[1])}},release(){releaseGrab()},render};
+const initialModel=Number(new URLSearchParams(location.search).get('model')||0);selectModel(modelLibrary[initialModel]?initialModel:0);init();
+</script>
+<script src="tjm/js/portfolio-motion.js"></script>
+<script>
+(function(){
+  function cleanShim(){document.querySelector('.tjm-shell-shim')?.remove();document.querySelectorAll('.sidebar-expand,.sidebar-collapse').forEach(function(el){el.remove()});}
+  document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(cleanShim)},{once:true});
+  new MutationObserver(function(){window.__tjmMelonTheme=document.body.dataset.theme||'white';if(window.__melon&&window.__melon.ready)window.__melon.render()}).observe(document.body,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script></body></html>

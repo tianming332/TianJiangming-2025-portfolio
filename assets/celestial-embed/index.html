@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-tjm-ui="celestial">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -15,6 +15,12 @@
     #intro{display:none!important}
     body::after{background:radial-gradient(circle at 50% 50%,transparent 48%,rgba(0,0,0,.18) 100%)!important}
   </style>
+
+  <!-- TJM UI POLISH START -->
+  <link rel="stylesheet" href="ui/polish-core.css?v=20260929-independent-2">
+  <link rel="stylesheet" href="ui/site-polish.css?v=20260929-independent-2">
+  <script defer src="ui/polish-core.js?v=20260929-independent-2"></script>
+  <!-- TJM UI POLISH END -->
 </head>
 <body data-ui-size="fine">
   <canvas id="field" aria-label="小行星空间观测系统"></canvas>
