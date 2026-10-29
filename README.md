@@ -1,28 +1,11 @@
-# TJM 2025–2026 Portfolio Preview
+# Tian Jiangming — Selected AI & Interactive Works
 
-这是按前一版演示布局还原的网页版本，已删除 MacBook Pro / iPad Pro 样机相关改动。
+天将明 2025–2026 精选作品：AI 视频 Agent、一键成册、AI 画风实验室与新-天象图库。
 
-## 本地预览
+## 版权
 
-直接双击 `index.html` 即可打开。
+© 2025–2026 天将明（Tian Jiangming）。保留所有权利。
 
-如果浏览器对本地脚本有限制，可在该文件夹运行：
+本仓库中的设计作品、视频、图像、文字与页面视觉为作者原创，仅用于作品展示。未经作者书面许可，不得复制、转载、修改或用于商业用途。
 
-```bash
-python3 -m http.server 8000
-```
-
-然后访问：
-
-http://localhost:8000
-
-## UI interaction dependencies
-
-The interface refinement takes visual and interaction cues from [Rare UI](https://rareui.com) and uses [morphicons](https://github.com/guillermolg00/morphicons) for stateful icon transitions. The source entry is `morph-ui.js`; rebuild the browser bundle with:
-
-```bash
-npm install
-npm run build
-```
-
-The page remains plain HTML/CSS/JS and does not require a React runtime.
+界面交互参考了 [Rare UI](https://rareui.com) 的视觉与交互风格；图标动效使用 [morphicons](https://github.com/guillermolg00/morphicons)（MIT）与 [Lucide](https://lucide.dev)（ISC），构建使用 esbuild（MIT）。第三方组件遵循其各自的开源许可证。
